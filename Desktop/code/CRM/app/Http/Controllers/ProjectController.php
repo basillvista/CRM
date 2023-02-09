@@ -14,7 +14,7 @@ class ProjectController extends Controller
      */
     public function index()
     {
-        //
+        return view('projects.index');
     }
 
     /**
@@ -24,7 +24,7 @@ class ProjectController extends Controller
      */
     public function create()
     {
-        //
+        return view('projects.create');
     }
 
     /**
@@ -35,7 +35,7 @@ class ProjectController extends Controller
      */
     public function store(Request $request)
     {
-        //
+
     }
 
     /**
@@ -46,7 +46,7 @@ class ProjectController extends Controller
      */
     public function show(Project $project)
     {
-        //
+
     }
 
     /**
@@ -57,7 +57,7 @@ class ProjectController extends Controller
      */
     public function edit(Project $project)
     {
-        //
+        return view('projects.edit', compact($project));
     }
 
     /**

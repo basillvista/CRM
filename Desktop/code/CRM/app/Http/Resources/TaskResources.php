@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Http\Resources;
-
+use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
 
 class TaskResources extends JsonResource
@@ -17,6 +17,7 @@ class TaskResources extends JsonResource
         return [
             'id'=>$this->id,
             'type'=>'Tasks',
+            'data'=>$this->collection,
             'attributes'=>[
                 'title'=>$this->title,
                 'description'=>$this->description,

@@ -2,7 +2,7 @@
 
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\{Controller, ClientController, ProjectController, TaskController};
+use App\Http\Controllers\{Controller, ClientController, ProjectController, TaskController, UserController};
 
 /*
 |--------------------------------------------------------------------------
@@ -17,14 +17,15 @@ use App\Http\Controllers\{Controller, ClientController, ProjectController, TaskC
 
 Auth::routes();
 
+Route::get('/', [\App\Http\Controllers\Auth\LoginController::class, 'showLoginForm']);
+
 Route::middleware('auth')->group(function (){
-    Route::get('/dashboard', [Controller::class, 'create']);
+    Route::get('/dashboard', [\App\Http\Controllers\HomeController::class, 'index']);
 
     Route::resource('projects',ProjectController::class)->except('destroy');
     Route::get('/projects/{project}/destroy', [ProjectController::class])->name('projects.destroy');
 
-//    Route::resource('/tasks', TaskController::class)->except('destroy');
-//    Route::get('/tasks/{task}/destroy', [TaskController::class])->name('tasks.destroy');
+    Route::resource('users',  UserController::class);
 
     Route::resource('clients', ClientController::class)->except('destroy','store');
     Route::post('/clients/store', [ClientController::class, 'store'])->name('clients.store');
