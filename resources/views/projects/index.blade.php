@@ -1,24 +1,24 @@
 @extends('layouts.crmApp')
 
-@section('clientsIndex')
+@section('projectsIndex')
     <div class="form-style-8">
-        <h2><a href="{{ route('clients.create') }}">Create Clients</a></h2>
+        <h2><a href="{{ route('projects.create') }}">Create Projects</a></h2>
         <div class="table">
             <div class="table-header">
-                <div class="header__item"><a>Company</a></div>
-                <div class="header__item"><a>VAT</a></div>
-                <div class="header__item"><a>Address</a></div>
+                <div class="header__item"><a>Project title</a></div>
+                <div class="header__item"><a>Description</a></div>
+                <div class="header__item"><a>Deadline</a></div>
             </div>
             <div class="table-content">
-                @foreach($clients as $client)
+                @foreach($projects as $project)
                     <div class="table-row">
-                        <div class="table-data">{{$client->company_name}}</div>
-                        <div class="table-data">{{$client->company_vat}}</div>
-                        <div class="table-data">{{$client->company_address}}</div>
+                        <div class="table-data">{{$project->title}}</div>
+                        <div class="table-data">{{$project->description}}</div>
+                        <div class="table-data">{{$project->deadline}}</div>
                         <div>
                             <td rowspan="2">
-                                <a href="{{ route('clients.edit', ['client'=>$client]) }}">Edit</a>
-                                <a href="{{ route('clients.destroy', ['client'=>$client]) }}">Delete</a>
+                                <a href="{{ route('projects.edit', ['project'=>$project]) }}">Edit</a>
+                                <a href="{{ route('projects.destroy', ['project'=>$project]) }}">Delete</a>
                             </td>
                         </div>
                     </div>
@@ -26,6 +26,6 @@
 
             </div>
         </div>
-        <div>{{$clients->links()}}</div>
+        <div>{{$projects->links()}}</div>
     </div>
 @endsection

@@ -10,10 +10,6 @@ use Illuminate\Http\Request;
 class TaskController
 {
 
-    public function __construct(){
-        request()->headers->set('Accept', 'application/json');
-    }
-
     /**
      * Display a listing of the resource.
      *
@@ -40,9 +36,9 @@ class TaskController
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Task $task)
+    public function store(Request $request)
     {
-//        return new TaskResources($task);
+        return new TaskResources($request->all());
     }
 
     /**
@@ -53,7 +49,7 @@ class TaskController
      */
     public function show(Task $task)
     {
-        //
+        return new TaskResources($task);
     }
 
     /**
@@ -76,7 +72,8 @@ class TaskController
      */
     public function update(Request $request, Task $task)
     {
-        //
+        $task->update($request->all());
+        return response()->json($task, '200');
     }
 
     /**
@@ -87,6 +84,7 @@ class TaskController
      */
     public function destroy(Task $task)
     {
-        //
+        $task->delete();
+        return response()->json(NULL, '204');
     }
 }

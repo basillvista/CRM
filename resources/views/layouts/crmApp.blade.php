@@ -415,6 +415,8 @@
 @yield('clientsIndex')
 @yield('users')
 @yield('usersIndex')
+@yield('projects')
+@yield('projectsIndex')
 </main>
 
 {{--    @else--}}

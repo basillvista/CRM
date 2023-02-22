@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Resources\TaskResources;
 use App\Models\Task;
 use Illuminate\Http\Request;
 
@@ -15,7 +14,8 @@ class TaskController extends Controller
      */
     public function index()
     {
-//        return new TaskResources::collection(Task::all());
+      $tasks=Task::order();
+      return view('tasks.index', compact('tasks'));
     }
 
     /**
@@ -25,7 +25,7 @@ class TaskController extends Controller
      */
     public function create()
     {
-        //
+        return view('tasks.create');
     }
 
     /**
@@ -34,9 +34,10 @@ class TaskController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Task $task)
+    public function store(Request $request)
     {
-//        return new TaskResources($task);
+        Task::create($request->all());
+        return redirect()->route('tasks.index');
     }
 
     /**
@@ -47,7 +48,6 @@ class TaskController extends Controller
      */
     public function show(Task $task)
     {
-        //
     }
 
     /**
@@ -58,7 +58,7 @@ class TaskController extends Controller
      */
     public function edit(Task $task)
     {
-        //
+        return redirect()->route('tasks.index');
     }
 
     /**
@@ -70,7 +70,8 @@ class TaskController extends Controller
      */
     public function update(Request $request, Task $task)
     {
-        //
+        $task->update($request->all());
+        return redirect()->route('tasks.index');
     }
 
     /**
@@ -81,6 +82,7 @@ class TaskController extends Controller
      */
     public function destroy(Task $task)
     {
-        //
+        $task->delete();
+        return redirect()->route('tasks.index');
     }
 }

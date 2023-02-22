@@ -14,7 +14,8 @@ class ProjectController extends Controller
      */
     public function index()
     {
-        return view('projects.index');
+        $projects=Project::order();
+        return view('projects.index', compact('projects'));
     }
 
     /**
@@ -35,7 +36,8 @@ class ProjectController extends Controller
      */
     public function store(Request $request)
     {
-
+       Project::create($request->validated());
+       return redirect()->route('projects.index');
     }
 
     /**
@@ -69,7 +71,8 @@ class ProjectController extends Controller
      */
     public function update(Request $request, Project $project)
     {
-        //
+        $project->update($request->all());
+        return redirect()->route('projects.index');
     }
 
     /**
@@ -80,6 +83,7 @@ class ProjectController extends Controller
      */
     public function destroy(Project $project)
     {
-        //
+        $project->delete();
+        return redirect()->route('projects.index');
     }
 }

@@ -19,4 +19,6 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 
 
-Route::middleware('auth:sanctum')->get('tasks', [\App\Http\Controllers\Api\TaskController::class, 'index']);
+//Route::middleware('auth:sanctum')->get('/tasks', [\App\Http\Controllers\Api\TaskController::class, 'index']);
+Route::get('/tasks', [\App\Http\Controllers\Api\TaskController::class, 'index']);
+Route::get('/tasks/{task}', [\App\Http\Controllers\Api\TaskController::class, 'show']);

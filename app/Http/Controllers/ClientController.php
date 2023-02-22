@@ -18,7 +18,6 @@ class ClientController extends Controller
     public function index()
     {
         $clients = Client::order();
-        dd($clients);
         return view('clients.index', compact('clients'));
     }
 
@@ -52,6 +51,7 @@ class ClientController extends Controller
      */
     public function show(Client $client)
     {
+
     }
 
     /**
@@ -73,7 +73,7 @@ class ClientController extends Controller
      */
     public function update(ClientStoreRequest $request, Client $client)
     {
-       Client::where('id',$client->id)->update($request->validated());
+        $client->update($request->validated());
         return redirect()->route('clients.index');
     }
 

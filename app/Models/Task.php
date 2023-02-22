@@ -21,4 +21,8 @@ class Task extends Model
         ];
 
     public const STATUS = ['in_progress', 'completed', 'open'];
+
+    public function ScopeOrder($query){
+        return $query->orderBy('deadline', 'desc')->paginate(10);
+    }
 }

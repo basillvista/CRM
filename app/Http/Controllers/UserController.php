@@ -72,7 +72,7 @@ class UserController extends Controller
      */
     public function update(User $user, Request $request)
     {
-        User::where('id',$user->id)->update($request->validated());
+        $user->update($request->validated());
         return  redirect()->route('users.index');
     }
 

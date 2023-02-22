@@ -30,5 +30,7 @@ Route::middleware('auth')->group(function (){
     Route::resource('clients', ClientController::class)->except('destroy','store');
     Route::post('/clients/store', [ClientController::class, 'store'])->name('clients.store');
     Route::get('/clients/{client}/destroy', [ClientController::class, 'destroy'])->name('clients.destroy');
+
+    Route::resource('tasks', TaskController::class);
 });
 
